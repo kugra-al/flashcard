@@ -20,6 +20,7 @@ import axios from 'axios'
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
+                        <p><a :href="`/flashcards`">See all flashcards</a></p>
                         <form @submit.prevent="handleSubmit">
                             <p>Create new flashcard set</p>
                             <div class="input-group mb-3">
