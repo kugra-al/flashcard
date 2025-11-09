@@ -104,6 +104,32 @@ function nextQuestion() {
 function tryAgain() {
     window.location.reload();
 }
+
+const resultFeedback = computed(() => {
+    let message = '';
+    if (!quiz.value.length) return message;
+
+    const resultPercent = (score.value / quiz.value.length) * 100;
+
+    switch (true) {
+        case resultPercent == 100:
+            message = 'Perfect!';
+            break;
+        case resultPercent >= 80:
+            message = 'Excellent!';
+            break;
+        case resultPercent >= 60:
+            message = 'Good job!';
+            break;
+        case resultPercent >= 40:
+            message = 'Not bad, but you need more practice.';
+            break;
+        default:
+            message = 'Not great. You need a lot more practice!';
+            break;
+    }
+    return message;
+});
 </script>
 
 <template>
@@ -161,6 +187,7 @@ function tryAgain() {
                             <div v-else-if="quiz.length">
                                 <h2>Quiz Complete!</h2>
                                 <p>Your score: {{ score }}/{{ quiz.length }}</p>
+                                <p>{{ resultFeedback }}</p>
                                 <p>
                                     <button class="btn btn-success" @click="tryAgain">
                                         Try again
